@@ -3,7 +3,7 @@
         "Mode": "AsyncioBatchThreaded",
         "LogOpenPorts": false,
 
-        "Threads": 5,
+        "Threads": 25,
         "TimeoutSeconds": 2,
         "Ports": [25565],
 
@@ -12,7 +12,7 @@
         },
 
         "AsyncioBatchThreaded": {
-            "BatchSize": 50
+            "BatchSize": 100
         },
 
         "NonBlockingSocketsThreaded": {

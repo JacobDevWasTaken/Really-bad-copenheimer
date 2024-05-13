@@ -18,11 +18,18 @@ def main():
     def logger(ip, port):
         print("Found open port: " + ip + ":" + str(port))
 
+    func = None
+
     if port_scanner_mode == "SimpleThreaded":
         pass
 
     elif port_scanner_mode == "AsyncioBatchThreaded":
-        src.discover.port_scanner.workerAsyncio.run_worker(logger)
+        func = src.discover.port_scanner.workerAsyncio.run_worker
 
     elif port_scanner_mode == "NonBlockingSocketsThreaded":
-        src.discover.port_scanner.workerNonBlockingSockets.run_worker(logger)
+        func = src.discover.port_scanner.workerNonBlockingSockets.run_worker
+
+    if func:
+        for i in range(src.configloader.load_discover_config("Portscanner.Threads")):
+            th_ = threading.Thread(target=func, args=(logger,))
+            th_.start()

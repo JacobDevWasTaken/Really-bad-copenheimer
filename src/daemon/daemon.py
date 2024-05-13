@@ -50,9 +50,9 @@ def handle_connection(sock: socket.socket):
                     sendx(sock, "Controls the server scanner. Start it with \"discover start\".")
                 elif len(args) == 2:
                     if args[1] == "start":
-                        discover(True)
+                        sendx(sock, discover(True))
                     if args[1] == "stop":
-                        discover(False)
+                        sendx(sock, discover(False))
             elif args[0] == "rescan":
                 if len(args) == 1:
                     sendx(sock, "Usage: rescan [start | stop | restart | config] [OPTIONS]")
