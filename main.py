@@ -18,7 +18,7 @@ if __name__ == "__main__":
     \\_____\\____/|_|    |______|_| \\_|_|  |_|______|_____|_|  |_|______|_|  \\_\\
     
     Copenheimer {VERSION}
-    https://github.com/JacobborstellCoder/Horrible_copenheimer
+    https://github.com/JacobborstellCoder/Really-bad-copenheimer
     """
 
     if len(sys.argv) == 1:
