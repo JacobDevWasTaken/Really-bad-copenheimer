@@ -1,0 +1,34 @@
+{
+    "Portscanner": {
+        "Mode": "AsyncioBatchThreaded",
+        "LogOpenPorts": false,
+
+        "Threads": 5,
+        "TimeoutSeconds": 2,
+        "Ports": [25565],
+
+        "SimpleThreaded": {
+
+        },
+
+        "AsyncioBatchThreaded": {
+            "BatchSize": 50
+        },
+
+        "NonBlockingSocketsThreaded": {
+            "BatchSize": 100
+        }
+    },
+
+    "Serverscanner": {
+        "Mode": "MCStatusThreadPoolExecutor",
+        "LogFoundServers": true,
+
+        "Threads": 5,
+        "TimeoutSeconds": 3,
+
+        "MCStatusThreadPoolExecutor": {
+
+        }
+    }
+}

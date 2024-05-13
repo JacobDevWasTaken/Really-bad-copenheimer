@@ -1,0 +1,16 @@
+{
+    "CLI": {
+        "Host": "127.0.0.1",
+        "Port": 25250,
+        "MaxConnections": 5
+    },
+    "DiscordBot": {
+        "Enabled": false,
+        "Token": "",
+        "AllowRemoteCLI": true
+    },
+    "LogToDiscordWebhook": {
+        "Enabled": false,
+        "WebhookURL": ""
+    }
+}
