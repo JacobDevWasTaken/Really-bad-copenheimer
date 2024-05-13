@@ -43,7 +43,7 @@ def handle_connection(sock: socket.socket):
             if args[0] == "help":
                 sendx(sock, "Usage: [discover | rescan | interface | stop-daemon | db] [OPTIONS]")
                 sendx(sock, "Type one of the above to show more info about it.")
-                sendx(sock, "For more info, please refer to https://github.com/JacobborstellCoder/Horrible_copenheimer")
+                sendx(sock, "For more info, please refer to https://github.com/JacobborstellCoder/Really-bad-copenheimer")
             elif args[0] == "discover":
                 if len(args) == 1:
                     sendx(sock, "Usage: discover [start | stop | restart | config] [OPTIONS]")

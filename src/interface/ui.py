@@ -33,7 +33,7 @@ class Top:
 
         row1 = Table.grid(expand=True)
         row1.add_column(justify="center")
-        row1.add_row("Horrible copenheimer V1.0",)
+        row1.add_row("Really bad copenheimer V1.0",)
 
         row2 = Table.grid(expand=True)
         row2.add_column(justify="left")
@@ -54,7 +54,7 @@ class Bottom:
         grid.add_column(justify="left", min_width=60)
         grid.add_column(justify="right")
 
-        grid.add_row("[link=https://github.com/JacobborstellCoder/Horrible_copenheimer]https://github.com/JacobborstellCoder/Horrible_copenheimer[/link]", datetime.now().ctime(),)
+        grid.add_row("[link=https://github.com/JacobborstellCoder/Really-bad-copenheimer]https://github.com/JacobborstellCoder/Really-bad-copenheimer[/link]", datetime.now().ctime(),)
         
         return Panel(grid, style="bright_white on grey11")
 
@@ -79,7 +79,7 @@ class Main:
 
 
     Copenheimer {VERSION}
-    [link=https://github.com/JacobborstellCoder/Horrible_copenheimer]https://github.com/JacobborstellCoder/Horrible_copenheimer[/link]
+    [link=https://github.com/JacobborstellCoder/Really-bad-copenheimer]https://github.com/JacobborstellCoder/Really-bad-copenheimer[/link]
                                                    
             """)
             
@@ -99,7 +99,7 @@ The server scanner: When copenheimer finds an open port, it will scan that port 
 The monitor: Copenheimer can regularly ping servers and track data like player counts over time.
 
 All of these options can be enabled, disabled and configured in the config.json file. For more info, please visit the github page:
-[link=https://github.com/JacobborstellCoder/Horrible_copenheimer]https://github.com/JacobborstellCoder/Horrible_copenheimer[/link]
+[link=https://github.com/JacobborstellCoder/Really-bad-copenheimer]https://github.com/JacobborstellCoder/Really-bad-copenheimer[/link]
             """)
             
             return Panel(grid,  style="bright_white on grey11", padding=(2, 7,))
