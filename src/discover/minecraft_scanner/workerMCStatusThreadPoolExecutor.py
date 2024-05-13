@@ -1,3 +1,6 @@
+import mcstatus
+from concurrent.futures import ThreadPoolExecutor
+
 """
 Really-Bad-Copenheimer
 Copyright (C) <2024>  <Jacob Borstell>
