@@ -1,5 +1,10 @@
+import time
+
 import mcstatus
 from concurrent.futures import ThreadPoolExecutor
+import threading
+
+import src.configloader
 
 """
 Really-Bad-Copenheimer
@@ -18,3 +23,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+to_add_ips: list = []
+to_add_ports: list = []
+
+
+def _scan(ip, port, logger):
+    print("scanning")
+    srv = mcstatus.JavaServer(host=ip, port=port)
+    srv.status()
+    logger(ip, port)
+
+
+def _thread(logger):
+    with ThreadPoolExecutor(max_workers=src.configloader.load_discover_config("Serverscanner.Threads")) as pool:
+        while True:
+            pool.map(_scan, to_add_ips, to_add_ports, [logger] * len(to_add_ips))
+            time.sleep(0.1)
+
+
+def start(logger):
+    threading.Thread(target=_thread, args=(logger,)).start()
+
+
+def add(ip, port):
+    to_add_ips.append(ip)
+    to_add_ports.append(port)
