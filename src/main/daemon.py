@@ -50,44 +50,50 @@ def discover(status: bool) -> str:
         else:
             return "The server scanner isn't running"
 
-
-def handle_connection(sock: socket.socket):
+def handle_input(txt):
     global running
     global discover_process
     if running:
-        inp: str = sock.recv(4096).decode("UTF-8")
-        if inp:
-            args: list[str] = inp.lower().split()
+        if txt:
+            args: list[str] = txt.lower().split()
             if args[0] == "help":
-                sendx(sock, "Usage: [discover | rescan | interface | stop-daemon | db] [OPTIONS]")
-                sendx(sock, "Type one of the above to show more info about it.")
-                sendx(sock, "For more info, please refer to https://github.com/JacobborstellCoder/Really-bad-copenheimer")
+                return """
+    Usage: [discover | rescan | process | db] [OPTIONS]"
+    Type one of the above to show more info about it.
+    For more info, please refer to https://github.com/JacobborstellCoder/Really-bad-copenheimer
+    """
+
             elif args[0] == "discover":
                 if len(args) == 1:
-                    sendx(sock, "Usage: discover [start | stop | restart | config] [OPTIONS]")
-                    sendx(sock, "Controls the server scanner. Start it with \"discover start\".")
+                    return """
+    Usage: discover [start | stop | restart | config] [OPTIONS]
+    Controls the server scanner. Start it with \"discover start\".
+    """
                 elif len(args) == 2:
                     if args[1] == "start":
-                        sendx(sock, discover(True))
-                    if args[1] == "stop":
-                        sendx(sock, discover(False))
+                        return discover(True)
+                    elif args[1] == "stop":
+                        return discover(False)
+                    elif args[1] == "restart":
+                        return discover(False) + discover(True)
+
+
             elif args[0] == "rescan":
                 if len(args) == 1:
-                    sendx(sock, "Usage: rescan [start | stop | restart | config] [OPTIONS]")
-                    sendx(sock, "Controls the rescanner. Start it with \"rescan start\".")
-            elif args[0] == "interface":
-                if len(args) == 1:
-                    sendx(sock, "Usage: interface [help | config | reload-config] [OPTIONS]")
-                    sendx(sock,
-                          "Allows you to configure the user interface settings. For more info, type \"interface help\".")
-            elif args[0] == "stop-daemon":
+                    return """
+    Usage: rescan [start | stop | restart | config] [OPTIONS]
+    Controls the rescanner. Start it with \"rescan start\".
+    """
+
+
+            elif args[0] == "stop":
                 running = False
-                ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                ss.connect((load_interface_config("CLI.Host"), load_interface_config("CLI.Port")))
-                ss.close()
-                sendx(sock, "!CLOSE_CONNECTION")
+                return "!CLOSE_CONNECTION"
             else:
-                sendx(sock, "Unknown command.")
+                return "Unknown command."
+
+def handle_connection(sock: socket.socket):
+    
 
     sock.close()
 
@@ -95,7 +101,7 @@ def handle_connection(sock: socket.socket):
 def start():
     global running
 
-    print("Starting daemon...")
+    print("Starting main...")
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         soc.bind((load_interface_config("CLI.Host"), load_interface_config("CLI.Port")))

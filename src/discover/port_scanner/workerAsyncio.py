@@ -1,8 +1,3 @@
-import asyncio
-import ipaddress
-import random
-import time
-
 """
 Really-Bad-Copenheimer
 Copyright (C) <2024>  <Jacob Borstell>
@@ -20,6 +15,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+import asyncio
+import ipaddress
+import random
+import time
 
 import src.configloader
 

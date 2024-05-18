@@ -35,7 +35,7 @@ def start(daemon_host: str = "127.0.0.1", daemon_port: int = 25250):
             try:
                 sock.connect((daemon_host, daemon_port))
             except Exception:
-                print("Could not connect to daemon at " + daemon_host + ":" + str(daemon_port))
+                print("Could not connect to main at " + daemon_host + ":" + str(daemon_port))
                 return 1
 
             sock.settimeout(1)

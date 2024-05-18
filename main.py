@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 
-import src.daemon.daemon
+import src.main.daemon
 import src.interface.cli
 import src.discover.main
 
@@ -42,22 +42,22 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         print(logo)
-        print("Usage: [cli | start-daemon]")
+        print("Usage: [cli | start-main]")
         print("System commands (intended for use within the program):")
-        print("[daemon-run | discover-run | rescan-run]")
+        print("[main-run | discover-run | rescan-run]")
 
     elif len(sys.argv) == 2:
         if sys.argv[1].lower() == "cli":
             print(logo)
             src.interface.cli.start()
-        elif sys.argv[1].lower() == "daemon-run":
+        elif sys.argv[1].lower() == "main-run":
             src.daemon.daemon.start()
         elif sys.argv[1].lower() == "discover-run":
             src.discover.main.main()
         elif sys.argv[1].lower() == "rescan-run":
             pass
-        elif sys.argv[1].lower() == "start-daemon":
+        elif sys.argv[1].lower() == "start-main":
             if os.name == "posix":
-                cmd = "( " + sys.executable + " " + __file__ + " daemon-run & )"
+                cmd = "( " + sys.executable + " " + __file__ + " main-run & )"
                 print(cmd)
                 proc = subprocess.Popen(["/bin/zsh", "-c", cmd], stderr=subprocess.STDOUT)
