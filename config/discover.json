@@ -1,6 +1,6 @@
 {
     "Portscanner": {
-        "Mode": "AsyncioBatchThreaded",
+        "Mode": "NonBlockingSocketsThreaded",
         "LogOpenPorts": false,
 
         "Threads": 10,

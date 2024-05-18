@@ -1,5 +1,12 @@
 {
+    "DB":{
+        "MongoURI": "mongodb://localhost:27017/",
+        "DBName": "Minecraft-Servers",
+        "IPsCollectionName": "Open-IPs",
+        "ServersCollectionName": "Servers"
+    },
     "CLI": {
+        "Enabled": true,
         "Host": "127.0.0.1",
         "Port": 25250,
         "MaxConnections": 5

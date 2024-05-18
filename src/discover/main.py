@@ -1,16 +1,3 @@
-import threading
-
-import src.configloader
-
-import src.discover.port_scanner.workerSimple
-import src.discover.port_scanner.workerAsyncio
-import src.discover.port_scanner.workerNonBlockingSockets
-
-GREEN = "\033[1;32;48m"
-YELLOW = "\033[1;33;48m"
-RED = "\033[1;31;48m"
-END = "\033[1;37;0m"
-
 """
 Really-Bad-Copenheimer
 Copyright (C) <2024>  <Jacob Borstell>
@@ -29,11 +16,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+import threading
+
+import src.configloader
+
+import src.discover.port_scanner.workerSimple
+import src.discover.port_scanner.workerAsyncio
+import src.discover.port_scanner.workerNonBlockingSockets
+
+from pymongo import MongoClient
+
+GREEN = "\033[1;32;48m"
+YELLOW = "\033[1;33;48m"
+RED = "\033[1;31;48m"
+END = "\033[1;37;0m"
+
+
 def main():
+    client = MongoClient(src.configloader.load_interface_config("DB.MongoURI"))
+    db = client[src.configloader.load_interface_config("DB.DBName")]
+    ipdb = db[src.configloader.load_interface_config("DB.IPsCollectionName")]
+    svdb = db[src.configloader.load_interface_config("DB.ServersCollectionName")]
+
     port_scanner_mode = src.configloader.load_discover_config("Portscanner.Mode")
 
     def logger(ip, port):
-        print("Found open port: " + ip + ":" + str(port))
+        ipdb.insert_one({"IP": ip, "Port": port})
 
     func = None
 

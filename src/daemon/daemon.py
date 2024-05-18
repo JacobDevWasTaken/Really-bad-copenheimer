@@ -1,10 +1,3 @@
-import socket
-import multiprocessing
-from concurrent.futures import ThreadPoolExecutor
-
-from src.configloader import load_interface_config
-import src.discover.main
-
 """
 Really-Bad-Copenheimer
 Copyright (C) <2024>  <Jacob Borstell>
@@ -22,6 +15,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+import socket
+import multiprocessing
+from concurrent.futures import ThreadPoolExecutor
+
+from src.configloader import load_interface_config
+import src.discover.main
 
 running = True
 
