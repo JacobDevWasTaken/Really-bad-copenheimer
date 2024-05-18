@@ -50,41 +50,39 @@ def discover(status: bool) -> str:
         else:
             return "The server scanner isn't running"
 
+
 def handle_input(txt):
     global running
     global discover_process
-    if running:
-        if txt:
-            args: list[str] = txt.lower().split()
-            if args[0] == "help":
-                return """
+    if txt:
+        args: list[str] = txt.lower().split()
+        if args[0] == "help":
+            return """
     Usage: [discover | rescan | process | db] [OPTIONS]"
     Type one of the above to show more info about it.
     For more info, please refer to https://github.com/JacobborstellCoder/Really-bad-copenheimer
     """
 
-            elif args[0] == "discover":
-                if len(args) == 1:
-                    return """
+        elif args[0] == "discover":
+            if len(args) == 1:
+                return """
     Usage: discover [start | stop | restart | config] [OPTIONS]
     Controls the server scanner. Start it with \"discover start\".
     """
-                elif len(args) == 2:
-                    if args[1] == "start":
-                        return discover(True)
-                    elif args[1] == "stop":
-                        return discover(False)
-                    elif args[1] == "restart":
-                        return discover(False) + discover(True)
+            elif len(args) == 2:
+                if args[1] == "start":
+                    return discover(True)
+                elif args[1] == "stop":
+                    return discover(False)
+                elif args[1] == "restart":
+                    return discover(False) + discover(True)
 
-
-            elif args[0] == "rescan":
-                if len(args) == 1:
-                    return """
+        elif args[0] == "rescan":
+            if len(args) == 1:
+                return """
     Usage: rescan [start | stop | restart | config] [OPTIONS]
     Controls the rescanner. Start it with \"rescan start\".
     """
-
 
             elif args[0] == "stop":
                 running = False
@@ -92,16 +90,12 @@ def handle_input(txt):
             else:
                 return "Unknown command."
 
+
 def handle_connection(sock: socket.socket):
-    
-
-    sock.close()
+    pass
 
 
-def start():
-    global running
-
-    print("Starting main...")
+def server():
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         soc.bind((load_interface_config("CLI.Host"), load_interface_config("CLI.Port")))
@@ -116,3 +110,17 @@ def start():
             pool.submit(handle_connection, conn)
     soc.close()
     discover(False)
+
+
+def start():
+    global running
+
+    print("Starting...")
+
+    if src.configloader.load_interface_config("TCPRemoteCLI.Enabled"):
+        pass
+
+    while running:
+        txt = input("Copenheimer > ")
+        out = handle_input(txt)
+        print(out)

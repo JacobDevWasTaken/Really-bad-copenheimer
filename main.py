@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 
-import src.main.daemon
+import src.main.main
 import src.interface.cli
 import src.discover.main
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         print(logo)
-        print("Usage: [cli | start-main]")
+        print("Usage: [start | cli]")
         print("System commands (intended for use within the program):")
         print("[main-run | discover-run | rescan-run]")
 
@@ -50,13 +50,11 @@ if __name__ == "__main__":
         if sys.argv[1].lower() == "cli":
             print(logo)
             src.interface.cli.start()
-        elif sys.argv[1].lower() == "main-run":
-            src.daemon.daemon.start()
+        elif sys.argv[1].lower() == "start":
+            src.main.main.start()
         elif sys.argv[1].lower() == "discover-run":
             src.discover.main.main()
-        elif sys.argv[1].lower() == "rescan-run":
-            pass
-        elif sys.argv[1].lower() == "start-main":
+        elif sys.argv[1].lower() == "start-detached":
             if os.name == "posix":
                 cmd = "( " + sys.executable + " " + __file__ + " main-run & )"
                 print(cmd)
