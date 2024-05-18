@@ -1,5 +1,3 @@
-
-
 """
 Really-Bad-Copenheimer
 Copyright (C) <2024>  <Jacob Borstell>

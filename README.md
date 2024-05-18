@@ -8,6 +8,4 @@ This is a clone of copenheimer, but as the name states, it's really bad. Written
 
 
 # Usage
-`python3 main.py start-daemon`
-
-`python3 main.py cli`
+`python main.py start` OR `python3 main.py start`

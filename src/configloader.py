@@ -29,9 +29,6 @@ def load_config():
     load_interface_config_file()
 
 
-reload_config = load_config
-
-
 def load_value_from_key(obj: dict, key: str):
     keys = key.split(".")
     cob = obj.copy()
@@ -53,5 +50,6 @@ def load_rescan_config(key):
 
 def load_interface_config(key):
     return load_value_from_key(INTERFACE_CONFIG, key)
+
 
 load_config()
