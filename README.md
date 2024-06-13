@@ -1,4 +1,4 @@
-## !NOTICE: REALLY BAD COPENHEIMER IS NOT FINISHED AND DOES NOT WORK FULLY!
+## NOTICE: REALLY BAD COPENHEIMER IS NOW A PART OF MINEPYLIB
 
 
 This is a clone of copenheimer, but as the name states, it's really bad. Written in Python.
